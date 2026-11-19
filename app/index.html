@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Coast Cover Studio — GTA-style cover art maker</title>
+<meta name="description" content="Turn any photo and caption into GTA 6-style multi-panel cover art, offline in your browser. Export a PNG to share.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VC</span>
+    <div>
+      <h1>VICE COAST <span>Cover Studio</span></h1>
+      <p>Photos to poster covers — offline, no upload, export PNG</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="surpriseBtn" class="btn ghost" type="button" title="Random layout, grade and photos">🎲 Surprise me</button>
+    <button id="undoBtn" class="btn ghost" type="button" disabled>↩ Undo</button>
+    <button id="redoBtn" class="btn ghost" type="button" disabled>↪ Redo</button>
+    <button id="exportBtn" class="btn primary" type="button">⬇ Export PNG</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="stage">
+    <div class="preview-wrap">
+      <canvas id="preview" width="960" height="540"></canvas>
+    </div>
+    <p class="stage-hint">Click a panel to select it — drag inside it to reposition the photo, scroll to zoom. <span id="sizeLabel">1920 × 1080</span></p>
+    <p class="export-note" id="exportNote"></p>
+    <div class="howto">
+      <h2>How it works</h2>
+      <ol>
+        <li><strong>Pick photos</strong> — use the samples or upload your own. Photos never leave your machine.</li>
+        <li><strong>Choose a layout and grade</strong> — six poster layouts, six Vice City grades.</li>
+        <li><strong>Write your title</strong> — big poster lettering plus a neon script subtitle.</li>
+        <li><strong>Export PNG</strong> — 1080 × 1080, 1080 × 1350 or 1920 × 1080, ready to post.</li>
+      </ol>
+      <p class="fineprint">All art, lettering and fonts are original. Anton and Pacifico are licensed under the SIL Open Font License. No Rockstar Games logo, artwork or font is used. Sample photos: two from the make.fun kit (free to use) and two made with an image model.</p>
+    </div>
+  </section>
+
+  <aside class="panel">
+    <section class="group">
+      <h2>1 · Photos</h2>
+      <div id="photoLib" class="thumbs"></div>
+      <label class="upload-btn" for="uploadInput">+ Upload your own photo</label>
+      <input id="uploadInput" type="file" accept="image/*" hidden>
+    </section>
+
+    <section class="group">
+      <h2>2 · Layout</h2>
+      <div id="layoutRow" class="chips"></div>
+    </section>
+
+    <section class="group">
+      <h2>3 · Grade</h2>
+      <div id="gradeRow" class="chips"></div>
+    </section>
+
+    <section class="group">
+      <h2>4 · Cover text</h2>
+      <label>Title
+        <input id="titleInput" type="text" maxlength="24" value="VICE COAST">
+      </label>
+      <label>Subtitle (neon script)
+        <input id="subtitleInput" type="text" maxlength="32" value="Neon Tide">
+      </label>
+      <label>Quote
+        <input id="quoteInput" type="text" maxlength="60" value="&quot;A FEVER DREAM IN NEON&quot; — THE COAST HERALD">
+      </label>
+      <label>Tagline strip
+        <input id="taglineInput" type="text" maxlength="60" value="ONE COAST  •  NO RULES  •  COMING SOON">
+      </label>
+      <label>Heat stars
+        <select id="starsInput">
+          <option value="1">★</option>
+          <option value="2">★★</option>
+          <option value="3">★★★</option>
+          <option value="4">★★★★</option>
+          <option value="5" selected>★★★★★</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>5 · Selected panel</h2>
+      <p class="panel-label" id="panelLabel">Panel 1 — Boulevard</p>
+      <label>Panel caption
+        <input id="captionInput" type="text" maxlength="24">
+      </label>
+      <label>Panel sub-caption
+        <input id="captionSubInput" type="text" maxlength="48">
+      </label>
+      <label>Zoom <span id="zoomVal">112%</span>
+        <input id="zoomInput" type="range" min="100" max="300" value="112">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>6 · Export size</h2>
+      <div id="sizeRow" class="chips"></div>
+    </section>
+  </aside>
+</main>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
